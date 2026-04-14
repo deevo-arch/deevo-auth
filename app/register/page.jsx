@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, Suspense, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { AuthProvider, useAuth } from '@/lib/auth-context';
@@ -8,7 +8,7 @@ import { AuthProvider, useAuth } from '@/lib/auth-context';
 function RegisterContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { signUpWithEmail, signInWithGoogle } = useAuth();
+  const { user, loading: authLoading, signUpWithEmail, signInWithGoogle } = useAuth();
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -18,10 +18,21 @@ function RegisterContent() {
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [initChecking, setInitChecking] = useState(true);
 
   const clientId = searchParams.get('client_id');
   const redirectUri = searchParams.get('redirect_uri');
   const isOAuthFlow = !!(clientId && redirectUri);
+
+  useEffect(() => {
+    if (!authLoading) {
+      if (user) {
+        handleOAuthRedirect(user);
+      } else {
+        setInitChecking(false);
+      }
+    }
+  }, [user, authLoading]);
 
   const getPasswordStrength = (pwd) => {
     if (!pwd) return 0;
@@ -105,26 +116,36 @@ function RegisterContent() {
     ? `/login?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}`
     : '/login';
 
-  if (success) {
-    return (
-      <>
-        <div className="bg-animated" />
-        <div className="page-center">
-          <div className="auth-container">
-            <div className="glass-card auth-card" style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '2rem', margin: '0 auto var(--space-2)', textAlign: 'center', color: 'var(--success)' }}>✓</div>
-              <img src="/deevo-logo.svg" alt="Deevo" style={{ height: 28, width: 'auto', margin: '0 auto var(--space-6)', display: 'block' }} />
-              <h1 style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 600, marginBottom: 'var(--space-3)' }}>
-                Account Created!
-              </h1>
-              <p style={{ color: 'var(--on-surface-variant)', fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-4)' }}>
-                We&apos;ve sent a verification email to <strong style={{ color: 'var(--primary)' }}>{email}</strong>.
-              </p>
-              <div className="alert alert-info"><span>Redirecting you shortly...</span></div>
+  if (initChecking || authLoading || success) {
+    if (success) {
+      return (
+        <>
+          <div className="bg-animated" />
+          <div className="page-center">
+            <div className="auth-container">
+              <div className="glass-card auth-card" style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '2rem', margin: '0 auto var(--space-2)', textAlign: 'center', color: 'var(--success)' }}>✓</div>
+                <img src="/deevo-logo.svg" alt="Deevo" style={{ height: 28, width: 'auto', margin: '0 auto var(--space-6)', display: 'block' }} />
+                <h1 style={{ fontSize: 'var(--font-size-2xl)', fontWeight: 600, marginBottom: 'var(--space-3)' }}>
+                  Account Created!
+                </h1>
+                <p style={{ color: 'var(--on-surface-variant)', fontSize: 'var(--font-size-sm)', marginBottom: 'var(--space-4)' }}>
+                  We&apos;ve sent a verification email to <strong style={{ color: 'var(--primary)' }}>{email}</strong>.
+                </p>
+                <div className="alert alert-info"><span>Redirecting you shortly...</span></div>
+              </div>
             </div>
           </div>
-        </div>
-      </>
+        </>
+      );
+    }
+    
+    // Default loading state
+    return (
+      <div className="loading-overlay">
+        <img src="/deevo-logo.svg" alt="Deevo" style={{ height: 32, width: 'auto' }} />
+        <span className="spinner" style={{ width: 24, height: 24, color: 'var(--primary)', marginTop: 'var(--space-4)' }} />
+      </div>
     );
   }
 

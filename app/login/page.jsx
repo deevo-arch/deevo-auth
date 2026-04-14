@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, Suspense } from 'react';
+import { useState, Suspense, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { AuthProvider, useAuth } from '@/lib/auth-context';
@@ -8,18 +8,29 @@ import { AuthProvider, useAuth } from '@/lib/auth-context';
 function LoginContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { signInWithGoogle, signInWithEmail } = useAuth();
+  const { user, loading: authLoading, signInWithGoogle, signInWithEmail } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState('');
+  const [initChecking, setInitChecking] = useState(true);
 
   // OAuth params from URL (when app redirects user here)
   const clientId = searchParams.get('client_id');
   const redirectUri = searchParams.get('redirect_uri');
   const isOAuthFlow = !!(clientId && redirectUri);
+
+  useEffect(() => {
+    if (!authLoading) {
+      if (user) {
+        handleOAuthRedirect(user);
+      } else {
+        setInitChecking(false);
+      }
+    }
+  }, [user, authLoading]);
 
   const handleOAuthRedirect = async (user) => {
     if (!isOAuthFlow) {
@@ -97,6 +108,15 @@ function LoginContent() {
   const registerHref = isOAuthFlow
     ? `/register?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}`
     : '/register';
+
+  if (initChecking || authLoading) {
+    return (
+      <div className="loading-overlay">
+        <img src="/deevo-logo.svg" alt="Deevo" style={{ height: 32, width: 'auto' }} />
+        <span className="spinner" style={{ width: 24, height: 24, color: 'var(--primary)', marginTop: 'var(--space-4)' }} />
+      </div>
+    );
+  }
 
   return (
     <>

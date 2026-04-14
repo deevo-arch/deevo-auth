@@ -1,10 +1,17 @@
 {
-  "name": "deevo-auth",
-  "version": "1.0.0",
+  "name": "deevo-oauth",
+  "version": "1.4.5",
   "description": "Official SDK for Deevo Account OAuth 2.0 authentication. Add 'Sign in with Deevo' to your app.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "dist",
     "README.md"
