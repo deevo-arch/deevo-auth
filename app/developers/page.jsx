@@ -57,10 +57,14 @@ function DeveloperContent() {
         body: JSON.stringify(newApp),
       });
       const data = await res.json();
-      setCreatedApp(data);
-      setNewApp({ name: '', redirectUri: '' });
-      setShowCreate(false);
-      fetchClients();
+      if (data.error) {
+        alert('Server Error: ' + data.error);
+      } else {
+        setCreatedApp(data);
+        setNewApp({ name: '', redirectUri: '' });
+        setShowCreate(false);
+        fetchClients();
+      }
     } catch (err) {
       console.error('Failed to create app:', err);
     }
