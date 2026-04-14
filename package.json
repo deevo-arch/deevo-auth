@@ -1,6 +1,6 @@
 {
   "name": "deevo-oauth",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "private": false,
   "scripts": {
     "dev": "next dev",
@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "deevo-oauth": "^1.0.0",
+    "deevo-oauth": "^1.4.5",
     "firebase": "^11.6.0",
     "firebase-admin": "^13.8.0",
     "jsonwebtoken": "^9.0.3",
