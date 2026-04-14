@@ -1,0 +1,32 @@
+{
+  "name": "deevo-auth",
+  "version": "1.0.0",
+  "description": "Official SDK for Deevo Account OAuth 2.0 authentication. Add 'Sign in with Deevo' to your app.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "deevo",
+    "auth",
+    "oauth",
+    "oauth2",
+    "authentication",
+    "login",
+    "identity"
+  ],
+  "author": "Deevo",
+  "license": "MIT",
+  "homepage": "https://deevo.tech",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deevo-tech/deevo-auth"
+  }
+}
