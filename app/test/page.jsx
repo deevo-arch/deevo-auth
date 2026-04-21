@@ -240,7 +240,7 @@ function TestContent() {
             whiteSpace: 'pre-wrap',
             lineHeight: 1.8,
           }}>
-{`import { DeevoAuth } from 'deevoauth';
+{`import { DeevoAuth } from 'deevo-oauth';
 
 const deevo = new DeevoAuth({
   clientId: '${clientId || 'YOUR_CLIENT_ID'}',

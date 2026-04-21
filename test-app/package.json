@@ -8,7 +8,7 @@
     "dev": "node server.js"
   },
   "dependencies": {
-    "deevoauth": "file:../sdk",
+    "deevo-oauth": "file:../sdk",
     "dotenv": "^16.4.0",
     "express": "^4.21.0",
     "express-session": "^1.18.0"

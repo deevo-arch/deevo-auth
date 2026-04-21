@@ -1,4 +1,4 @@
-const { DeevoAuth } = require('deevoauth');
+const { DeevoAuth } = require('deevo-oauth');
 
 function getDeevo() {
   return new DeevoAuth({

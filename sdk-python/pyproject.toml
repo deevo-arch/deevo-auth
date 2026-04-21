@@ -3,7 +3,7 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "deevoauth"
+name = "deevo-oauth"
 version = "1.0.0"
 description = "Official SDK for Deevo Account OAuth 2.0 authentication. Add 'Sign in with Deevo' to your Python app."
 readme = "README.md"

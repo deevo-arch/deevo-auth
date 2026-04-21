@@ -1,5 +1,5 @@
 {
-  "name": "deevoauth",
+  "name": "deevo-oauth",
   "version": "1.4.8",
   "description": "Official SDK for Deevo Account OAuth 2.0 authentication. Add 'Sign in with Deevo' to your app.",
   "main": "dist/index.js",

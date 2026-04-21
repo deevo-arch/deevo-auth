@@ -5,7 +5,7 @@ Official SDK for integrating **Deevo Account** OAuth 2.0 authentication into you
 ## Installation
 
 ```bash
-npm install deevoauth
+npm install deevo-oauth
 ```
 
 ## ⚡ Getting Started
@@ -22,8 +22,8 @@ npm install deevoauth
 ### Step 2 — Configure the SDK
 
 ```javascript
-const { DeevoAuth } = require('deevoauth');
-// or: import { DeevoAuth } from 'deevoauth';
+const { DeevoAuth } = require('deevo-oauth');
+// or: import { DeevoAuth } from 'deevo-oauth';
 
 const deevo = new DeevoAuth({
   clientId: 'YOUR_CLIENT_ID',          // from deevo.tech/developers
@@ -121,7 +121,7 @@ const user = await deevo.verifyToken(req.headers.authorization.split(' ')[1]);
 Protect your API routes:
 
 ```javascript
-const { DeevoAuth, deevoMiddleware } = require('deevo-auth');
+const { DeevoAuth, deevoMiddleware } = require('deevo-oauth');
 
 const deevo = new DeevoAuth({ /* config */ });
 
@@ -135,7 +135,7 @@ app.get('/api/profile', deevoMiddleware(deevo), (req, res) => {
 
 ```javascript
 // pages/api/auth/login.js
-import { DeevoAuth } from 'deevo-auth';
+import { DeevoAuth } from 'deevo-oauth';
 
 const deevo = new DeevoAuth({
   clientId: process.env.DEEVO_CLIENT_ID,
@@ -178,7 +178,7 @@ function LoginButton() {
 ## Error Handling
 
 ```javascript
-const { DeevoAuthError } = require('deevo-auth');
+const { DeevoAuthError } = require('deevo-oauth');
 
 try {
   const { user } = await deevo.handleCallback(code);

@@ -21,7 +21,7 @@ require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const { DeevoAuth } = require('deevoauth');
+const { DeevoAuth } = require('deevo-oauth');
 
 const app = express();
 const PORT = process.env.PORT || 3001;

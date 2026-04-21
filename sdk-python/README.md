@@ -5,7 +5,7 @@ Official Python SDK for **Deevo Account** OAuth 2.0 authentication.
 ## Installation
 
 ```bash
-pip install deevoauth
+pip install deevo-oauth
 ```
 
 ## Quick Start
