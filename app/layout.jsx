@@ -14,6 +14,8 @@ export const metadata = {
   },
 };
 
+import { AuthProvider } from '@/lib/auth-context';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -26,7 +28,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

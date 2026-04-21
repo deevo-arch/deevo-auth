@@ -247,8 +247,8 @@ function DashboardContent() {
 
 export default function DashboardPage() {
   return (
-    <AuthProvider>
+    
       <DashboardContent />
-    </AuthProvider>
+    
   );
 }

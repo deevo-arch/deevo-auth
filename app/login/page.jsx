@@ -246,10 +246,10 @@ function LoginFallback() {
 
 export default function LoginPage() {
   return (
-    <AuthProvider>
+    
       <Suspense fallback={<LoginFallback />}>
         <LoginContent />
       </Suspense>
-    </AuthProvider>
+    
   );
 }

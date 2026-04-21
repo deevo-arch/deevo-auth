@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
-import { AuthProvider } from '@/lib/auth-context';
 
 function HomeContent() {
   const { user } = useAuth();
@@ -180,8 +179,8 @@ function HomeContent() {
 
 export default function HomePage() {
   return (
-    <AuthProvider>
+    
       <HomeContent />
-    </AuthProvider>
+    
   );
 }

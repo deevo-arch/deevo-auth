@@ -1,0 +1,10 @@
+README.md
+pyproject.toml
+deevo_oauth.egg-info/PKG-INFO
+deevo_oauth.egg-info/SOURCES.txt
+deevo_oauth.egg-info/dependency_links.txt
+deevo_oauth.egg-info/requires.txt
+deevo_oauth.egg-info/top_level.txt
+deevoauth/__init__.py
+deevoauth/client.py
+deevoauth/errors.py

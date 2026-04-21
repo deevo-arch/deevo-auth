@@ -264,8 +264,8 @@ console.log(user.name, user.email);`}
 
 export default function TestPage() {
   return (
-    <AuthProvider>
+    
       <TestContent />
-    </AuthProvider>
+    
   );
 }

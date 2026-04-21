@@ -240,10 +240,10 @@ function RegisterFallback() {
 
 export default function RegisterPage() {
   return (
-    <AuthProvider>
+    
       <Suspense fallback={<RegisterFallback />}>
         <RegisterContent />
       </Suspense>
-    </AuthProvider>
+    
   );
 }

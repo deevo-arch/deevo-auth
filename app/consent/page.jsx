@@ -214,10 +214,10 @@ function ConsentFallback() {
 
 export default function ConsentPage() {
   return (
-    <AuthProvider>
+    
       <Suspense fallback={<ConsentFallback />}>
         <ConsentContent />
       </Suspense>
-    </AuthProvider>
+    
   );
 }

@@ -280,8 +280,8 @@ console.log(user.email, user.name);`}
 
 export default function DeveloperPage() {
   return (
-    <AuthProvider>
+    
       <DeveloperContent />
-    </AuthProvider>
+    
   );
 }
