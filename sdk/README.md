@@ -1,28 +1,33 @@
-# deevo-auth
+# deevoauth
 
-Official SDK for integrating **Deevo Account** OAuth 2.0 authentication into your applications.
+Official SDK for integrating **Deevo Account** OAuth 2.0 authentication into your applications. Add "Sign in with Deevo" — just like Google OAuth.
 
 ## Installation
 
 ```bash
-npm install deevo-auth
+npm install deevoauth
 ```
 
-## Quick Start
+## ⚡ Getting Started
 
-### 1. Get your credentials
+### Step 1 — Get your API keys
 
-Visit the [Deevo Developer Console](https://deevo.tech/developers) to register your application and get your `clientId` and `clientSecret`.
+> **Go to the [Deevo Developer Console](https://deevo.tech/developers)** to create your app and get your `clientId` and `clientSecret`.
+>
+> 1. Sign in at [deevo.tech/developers](https://deevo.tech/developers)
+> 2. Click **"+ New App"**
+> 3. Set your app name and **Redirect URI** (e.g. `https://yourapp.com/auth/callback`)
+> 4. Save the **Client ID** and **Client Secret**
 
-### 2. Configure the SDK
+### Step 2 — Configure the SDK
 
 ```javascript
-const { DeevoAuth } = require('deevo-auth');
-// or: import { DeevoAuth } from 'deevo-auth';
+const { DeevoAuth } = require('deevoauth');
+// or: import { DeevoAuth } from 'deevoauth';
 
 const deevo = new DeevoAuth({
-  clientId: 'YOUR_CLIENT_ID',
-  clientSecret: 'YOUR_CLIENT_SECRET',
+  clientId: 'YOUR_CLIENT_ID',          // from deevo.tech/developers
+  clientSecret: 'YOUR_CLIENT_SECRET',  // from deevo.tech/developers
   redirectUri: 'https://yourapp.com/auth/callback',
 });
 ```

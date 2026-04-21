@@ -20,6 +20,9 @@ function HomeContent() {
           <Link href="/developers" className="btn btn-ghost" style={{ marginRight: 'var(--space-2)' }}>
             Developers
           </Link>
+          <Link href="/test" className="btn btn-ghost" style={{ marginRight: 'var(--space-2)' }}>
+            Playground
+          </Link>
           {user ? (
             <Link href="/dashboard" className="btn btn-primary" style={{ padding: '0.5rem 1.5rem' }}>
               Dashboard
@@ -45,12 +48,30 @@ function HomeContent() {
             Sign in once, access everything — securely, seamlessly, instantly.
           </p>
           <div className="hero-cta">
-            <Link href="/register" className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}>
-              Get Started
-            </Link>
-            <Link href="/login" className="btn btn-secondary" style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}>
-              Sign In
-            </Link>
+            {user ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: 'var(--space-3)', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <Link href="/dashboard" className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}>
+                    Open Dashboard
+                  </Link>
+                  <Link href="/developers" className="btn btn-secondary" style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}>
+                    Developer Console
+                  </Link>
+                </div>
+                <Link href="/test" className="btn btn-ghost" style={{ fontSize: '0.9rem', color: 'var(--primary)' }}>
+                  🧪 Go to OAuth Test Playground
+                </Link>
+              </div>
+            ) : (
+              <>
+                <Link href="/register" className="btn btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}>
+                  Get Started
+                </Link>
+                <Link href="/login" className="btn btn-secondary" style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}>
+                  Sign In
+                </Link>
+              </>
+            )}
           </div>
         </section>
 
@@ -149,6 +170,7 @@ function HomeContent() {
           <Link href="/login">Sign In</Link>
           <Link href="/register">Create Account</Link>
           <Link href="/developers">Developers</Link>
+          <Link href="/test">OAuth Playground</Link>
         </div>
         <p style={{ opacity: 0.5 }}>&copy; {new Date().getFullYear()} Deevo. All rights reserved.</p>
       </footer>
