@@ -17,6 +17,9 @@ function HomeContent() {
           <img src="/deevo-logo.svg" alt="Deevo" style={{ height: 22, width: 'auto' }} />
         </Link>
         <div className="navbar-actions">
+          <Link href="/developers" className="btn btn-ghost" style={{ marginRight: 'var(--space-2)' }}>
+            Developers
+          </Link>
           {user ? (
             <Link href="/dashboard" className="btn btn-primary" style={{ padding: '0.5rem 1.5rem' }}>
               Dashboard
@@ -127,7 +130,7 @@ function HomeContent() {
               Integrate Deevo Auth into your app in minutes. Install the SDK, configure your client credentials, and let users sign in with their Deevo Account.
             </p>
             <div style={{ background: 'var(--surface-container-lowest)', borderRadius: 'var(--radius-md)', padding: 'var(--space-4)', marginBottom: 'var(--space-6)', fontFamily: 'monospace', fontSize: 'var(--font-size-sm)', color: 'var(--primary)', textAlign: 'left' }}>
-              npm install deevo-oauth
+              npm install deevoauth
             </div>
             <Link href="/developers" className="btn btn-primary" style={{ padding: '0.75rem 2rem' }}>
               Developer Console →

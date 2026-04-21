@@ -38,19 +38,17 @@ function LoginContent() {
       return;
     }
 
-    // Exchange Firebase token for Deevo OAuth code
-    const idToken = await user.getIdToken();
-    const response = await fetch('/api/internal/generate-code', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ idToken, clientId, redirectUri }),
+    // Redirect to consent screen — user must approve before code is issued
+    const scope = searchParams.get('scope') || 'profile email';
+    const state = searchParams.get('state') || '';
+    const consentParams = new URLSearchParams({
+      client_id: clientId,
+      redirect_uri: redirectUri,
+      scope,
     });
+    if (state) consentParams.set('state', state);
 
-    const data = await response.json();
-    if (data.error) throw new Error(data.error);
-
-    // Redirect back to client app
-    window.location.href = `${redirectUri}?code=${data.code}`;
+    router.push(`/consent?${consentParams.toString()}`);
   };
 
   const handleGoogleLogin = async () => {

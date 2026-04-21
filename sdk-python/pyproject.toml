@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deevoauth"
+version = "1.0.0"
+description = "Official SDK for Deevo Account OAuth 2.0 authentication. Add 'Sign in with Deevo' to your Python app."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [{name = "Deevo", email = "dev@deevo.tech"}]
+keywords = ["deevo", "auth", "oauth", "oauth2", "authentication", "login", "identity"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Internet :: WWW/HTTP :: Session",
+]
+dependencies = [
+    "requests>=2.28.0",
+]
+
+[project.urls]
+Homepage = "https://deevo.tech"
+Repository = "https://github.com/deevo-tech/deevo-auth"
+Documentation = "https://deevo.tech/developers"

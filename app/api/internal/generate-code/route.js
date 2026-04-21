@@ -16,10 +16,19 @@ export async function POST(request) {
     const clientDoc = await clientRef.get();
 
     if (!clientDoc.exists) {
-      return NextResponse.json({ error: 'invalid_client' }, { status: 400 });
+      return NextResponse.json({ error: 'invalid_client', message: 'Client application not found' }, { status: 400 });
     }
 
-    // 3. Generate a secure, random Authorization Code
+    // 3. Validate redirect URI matches what's registered for this client
+    const clientData = clientDoc.data();
+    if (clientData.redirectUri !== redirectUri) {
+      return NextResponse.json(
+        { error: 'invalid_redirect_uri', message: 'Redirect URI does not match the registered URI for this client' },
+        { status: 400 }
+      );
+    }
+
+    // 4. Generate a secure, random Authorization Code
     const authCode = crypto.randomBytes(16).toString('hex');
 
     // 4. Store the code in Firestore with a 5-minute expiration

@@ -53,6 +53,7 @@ class DeevoAuth {
    */
   getAuthUrl(options = {}) {
     const params = new URLSearchParams({
+      response_type: 'code',
       client_id: this.clientId,
       redirect_uri: this.redirectUri,
       scope: this.scope,

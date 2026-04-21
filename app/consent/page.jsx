@@ -12,26 +12,42 @@ function ConsentContent() {
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState('');
   const [appName, setAppName] = useState('');
+  const [appLoading, setAppLoading] = useState(true);
 
   const clientId = searchParams.get('client_id');
   const redirectUri = searchParams.get('redirect_uri');
   const scope = searchParams.get('scope') || 'profile email';
+  const state = searchParams.get('state') || '';
 
   useEffect(() => {
     if (!loading && !user) {
-      // Redirect to login with OAuth params
+      // Redirect to login with OAuth params preserved
       const params = new URLSearchParams({
         client_id: clientId || '',
         redirect_uri: redirectUri || '',
+        scope,
       });
+      if (state) params.set('state', state);
       router.push(`/login?${params.toString()}`);
     }
-  }, [user, loading, router, clientId, redirectUri]);
+  }, [user, loading, router, clientId, redirectUri, scope, state]);
 
   useEffect(() => {
-    // Fetch app name from client_id
+    // Fetch real app name from client-info API
     if (clientId) {
-      setAppName(clientId); // Placeholder — could fetch from Firestore
+      setAppLoading(true);
+      fetch(`/api/oauth/client-info?client_id=${encodeURIComponent(clientId)}`)
+        .then(res => res.json())
+        .then(data => {
+          setAppName(data.name || clientId);
+          setAppLoading(false);
+        })
+        .catch(() => {
+          setAppName(clientId);
+          setAppLoading(false);
+        });
+    } else {
+      setAppLoading(false);
     }
   }, [clientId]);
 
@@ -51,19 +67,24 @@ function ConsentContent() {
       });
 
       const data = await response.json();
-      if (data.error) throw new Error(data.error);
+      if (data.error) throw new Error(data.message || data.error);
 
-      window.location.href = `${redirectUri}?code=${data.code}`;
+      // Redirect back to client app with code (and state if present)
+      let callbackUrl = `${redirectUri}?code=${data.code}`;
+      if (state) callbackUrl += `&state=${encodeURIComponent(state)}`;
+      window.location.href = callbackUrl;
     } catch (err) {
       console.error(err);
-      setError('Failed to authorize. Please try again.');
+      setError(err.message || 'Failed to authorize. Please try again.');
       setProcessing(false);
     }
   };
 
   const handleDeny = () => {
     if (redirectUri) {
-      window.location.href = `${redirectUri}?error=access_denied`;
+      let denyUrl = `${redirectUri}?error=access_denied`;
+      if (state) denyUrl += `&state=${encodeURIComponent(state)}`;
+      window.location.href = denyUrl;
     } else {
       router.push('/dashboard');
     }
