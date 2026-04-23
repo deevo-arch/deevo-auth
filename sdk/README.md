@@ -1,4 +1,4 @@
-# deevoauth
+# deevo-oauth
 
 Official SDK for integrating **Deevo Account** OAuth 2.0 authentication into your applications. Add "Sign in with Deevo" — just like Google OAuth.
 

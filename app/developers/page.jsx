@@ -238,7 +238,7 @@ function DeveloperContent() {
                 1. Install the SDK
               </h3>
               <div style={{ background: 'var(--surface-container-lowest)', borderRadius: 'var(--radius-sm)', padding: 'var(--space-3)', fontFamily: 'monospace', fontSize: 'var(--font-size-xs)', color: 'var(--on-surface)' }}>
-                npm install deevoauth
+                npm install deevo-oauth
               </div>
             </div>
 
@@ -247,7 +247,7 @@ function DeveloperContent() {
                 2. Configure in your app
               </h3>
               <pre style={{ background: 'var(--surface-container-lowest)', borderRadius: 'var(--radius-sm)', padding: 'var(--space-4)', fontFamily: 'monospace', fontSize: 'var(--font-size-xs)', color: 'var(--on-surface)', overflow: 'auto', whiteSpace: 'pre-wrap' }}>
-{`import { DeevoAuth } from 'deevoauth';
+{`import { DeevoAuth } from 'deevo-oauth';
 
 const deevo = new DeevoAuth({
   clientId: 'YOUR_CLIENT_ID',

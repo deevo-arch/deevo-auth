@@ -4,7 +4,7 @@ A standalone Express.js application that tests the complete **Deevo OAuth 2.0** 
 
 ## What it does
 
-This app acts as a **third-party application** that integrates "Sign in with Deevo" using the `deevoauth` SDK — exactly like a real developer would.
+This app acts as a **third-party application** that integrates "Sign in with Deevo" using the `deevo-oauth` SDK — exactly like a real developer would.
 
 ### The Flow
 
